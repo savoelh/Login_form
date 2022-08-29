@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<form method="POST">
+
+    {{ form.hidden_tag() }}
+  
+    {% for field in form
+      if field.widget.input_type != 'hidden' %}
+    <p>
+      {{ field.label }}
+      {{ field }}
+      {% for error in field.errors %}
+      <span class="">{{ error }}</span>
+      {% endfor %}
+    </p>
+    {% endfor %}
+  
+    <button class="" type="submit">login</button>
+  
+  </form>
+
+  <h2>Forgot your password?</h2>
+  <p><a href="/password_reset_form">Click here</a></p>
+  {% endblock %}

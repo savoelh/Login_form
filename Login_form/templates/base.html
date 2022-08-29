@@ -1,0 +1,54 @@
+<html>
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css">
+</head>
+
+<body>
+  <nav class="navbar" role="navigation" aria-label="main navigation">
+    <div class="navbar-brand">
+      <a class="navbar-item" href="">
+      </a>
+    </div>
+    <div id="navbarBasicExample" class="navbar-menu">
+      <div class="navbar-start">
+        <a href="/" class="navbar-item">
+          Home
+        </a>
+      </div>
+      <div class="navbar-end">
+        <div class="navbar-item">
+          <div class="buttons">
+            {% if 'username' in session %}
+            <a class="button is-primary" href="/logout">Logout</a>
+            <a class="button is-light"href="/users/{{session.username}}">User Settings</a>
+            {% endif %}
+            {% if 'username' not in session %}
+            <a class="button is-primary" href="/register">
+              <strong>Register</strong>
+            </a>
+            <a class="button is-light" href="/login">
+              Log in
+            </a>
+            {% endif %}
+          </div>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+  <div class="container" style="margin-top: 2em">
+    {% for msg in get_flashed_messages() %}
+    <div class="alert alert-danger">{{ msg }}</div>
+    {% endfor %}
+
+    {% block content %}
+    {% endblock %}
+  </div>
+
+</body>
+
+</html>
